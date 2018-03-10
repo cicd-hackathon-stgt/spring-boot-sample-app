@@ -1,6 +1,7 @@
 stages:
   - build-stage
   - deploy-stage
+  - test-stage
 
 build-job:
   stage: build-stage
@@ -25,3 +26,9 @@ deploy-job:
     - "cf login -a ${CF_API} -u ${CF_USER} -p \"${CF_PASS}\""
     - cf push sample-app -p target/spring-boot-sample-app-0.0.1-SNAPSHOT.jar --random-route
     
+test-job:
+  stage: test-stage
+  tags:
+    - shell
+  script:
+    - curl --silent http://sample-app-chatty-duiker.cfapps.io/actuator/health | jq '.status' | grep -o UP
