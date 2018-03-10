@@ -17,8 +17,7 @@ build-job:
     when: always
     expire_in: 7d
     paths:
-      - "*"
-      - "target/spring-boot-sample-app-*-SNAPSHOT.jar"
+      - "spring-boot-sample-app/target/spring-boot-sample-app-*-SNAPSHOT.jar"
 
 deploy-job:
   stage: deploy-stage
@@ -27,7 +26,7 @@ deploy-job:
   environment: dev
   script:
     - "cf login -a ${CF_API} -u ${CF_USER} -p \"${CF_PASS}\""
-    - cf push sample-app -p target/spring-boot-sample-app-0.0.1-SNAPSHOT.jar --hostname sample-app
+    - cf push sample-app -p spring-boot-sample-app/target/spring-boot-sample-app-*-SNAPSHOT.jar --hostname sample-app
     
 test-job:
   stage: test-stage
