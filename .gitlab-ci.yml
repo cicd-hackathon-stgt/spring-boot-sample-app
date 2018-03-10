@@ -5,7 +5,9 @@ stages:
 
 build-job:
   stage: build-stage
-  environment: dev
+  environment: 
+    - name: dev
+    - url: http://sample-app-chatty-duiker.cfapps.io/
   tags:
     - shell
   script:
