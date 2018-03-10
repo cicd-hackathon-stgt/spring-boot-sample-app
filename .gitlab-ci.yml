@@ -17,6 +17,7 @@ build-job:
     when: always
     expire_in: 7d
     paths:
+      - "*"
       - "target/spring-boot-sample-app-*-SNAPSHOT.jar"
 
 deploy-job:
