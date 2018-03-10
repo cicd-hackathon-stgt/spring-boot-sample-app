@@ -20,6 +20,7 @@ deploy-job:
   stage: deploy-stage
   tags:
     - shell
+  environment: dev
   script:
     - cd spring-boot-sample-app
     - ./mvnw install -D skipTests
